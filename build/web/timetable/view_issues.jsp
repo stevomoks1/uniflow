@@ -1,13 +1,19 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<<<<<<< HEAD
 <%@page import="java.util.List"%>
 <%@page import="Models.WorkflowDAO"%>
+=======
+>>>>>>> eb447e73418c656761eba5acc9449c9531f8de86
 <%
     Models.User user = (Models.User) session.getAttribute("user");
     if (user == null || !"Timetabling Admin".equals(user.getRole())) {
         response.sendRedirect(request.getContextPath() + "/login");
         return;
     }
+<<<<<<< HEAD
     List<WorkflowDAO.IssueRecord> issues = WorkflowDAO.listIssues();
+=======
+>>>>>>> eb447e73418c656761eba5acc9449c9531f8de86
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,14 +34,20 @@
     <div class="page">
         <div>
             <h1>View Issues</h1>
+<<<<<<< HEAD
             <p>Flow step 5: DET reviews class feedback and applies week-2 adjustments.</p>
             <p><a href="<%= request.getContextPath() %>/timetable/dashboard.jsp">Back to dashboard</a></p>
             <% if (request.getParameter("success") != null) { %><p style="color:#86efac;">Issue update saved.</p><% } %>
+=======
+            <p>Monitor reported scheduling issues and classroom conflicts.</p>
+            <p><a href="dashboard.jsp">Back to dashboard</a></p>
+>>>>>>> eb447e73418c656761eba5acc9449c9531f8de86
         </div>
 
         <div class="card">
             <table>
                 <thead>
+<<<<<<< HEAD
                     <tr><th>Issue</th><th>Requirement</th><th>Reported by</th><th>Priority</th><th>Status</th><th>Action</th></tr>
                 </thead>
                 <tbody>
@@ -65,6 +77,14 @@
                         </td>
                     </tr>
                     <% }} %>
+=======
+                    <tr><th>Issue</th><th>Reported by</th><th>Priority</th><th>Status</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Room unavailable for CS101</td><td>classrep@uniflow.local</td><td>High</td><td>Open</td></tr>
+                    <tr><td>Lecture clash for Year 2</td><td>cod@uniflow.local</td><td>Medium</td><td>Investigating</td></tr>
+                    <tr><td>Requirement missing venue</td><td>timing@uniflow.local</td><td>Low</td><td>Resolved</td></tr>
+>>>>>>> eb447e73418c656761eba5acc9449c9531f8de86
                 </tbody>
             </table>
         </div>

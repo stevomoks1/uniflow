@@ -40,7 +40,26 @@
             <input id="password" name="password" type="password" required />
             <button type="submit">Sign in</button>
         </form>
+<<<<<<< HEAD
         <p class="hint">New to UniFlow? <a href="register.jsp">Create an account</a> | <a href="index.html">Home</a></p>
     </main>
+=======
+<<<<<<< HEAD
+        <p class="hint">New to UniFlow? <a href="register">Create an account</a> | <a href="index.html">Home</a></p>
+    </main>
+    <% if (logout != null) { %>
+    <script>
+        (function () {
+            var url = new URL(window.location.href);
+            url.searchParams.delete("logout");
+            window.history.replaceState({}, document.title, url.pathname + (url.search ? url.search : ""));
+        })();
+    </script>
+    <% } %>
+=======
+        <p class="hint">New to UniFlow? <a href="register.jsp">Create an account</a> | <a href="index.html">Home</a></p>
+    </main>
+>>>>>>> 9c3c207d0856dc0a452a5f7256f575f923bdd52b
+>>>>>>> eb447e73418c656761eba5acc9449c9531f8de86
 </body>
 </html>

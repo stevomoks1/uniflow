@@ -15,6 +15,17 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        HttpSession session = request.getSession(false);
+        if (session != null && session.getAttribute("role") != null) {
+            response.sendRedirect(request.getContextPath() + "/dashboard");
+            return;
+        }
+=======
+>>>>>>> 9c3c207d0856dc0a452a5f7256f575f923bdd52b
+>>>>>>> eb447e73418c656761eba5acc9449c9531f8de86
         request.getRequestDispatcher("/login.jsp").forward(request, response);
     }
 
@@ -23,6 +34,7 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+<<<<<<< HEAD
         if (email != null) {
             email = email.trim();
         }
@@ -35,6 +47,10 @@ public class LoginServlet extends HttpServlet {
             request.getRequestDispatcher("/login.jsp").forward(request, response);
             return;
         }
+=======
+
+        User user = MySQLUserDAO.authenticate(email, password);
+>>>>>>> eb447e73418c656761eba5acc9449c9531f8de86
         if (user == null) {
             request.setAttribute("error", "Invalid email or password.");
             request.getRequestDispatcher("/login.jsp").forward(request, response);

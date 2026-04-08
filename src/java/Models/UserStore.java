@@ -51,6 +51,10 @@ public class UserStore {
     }
 
     private static String normalizeEmail(String email) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> eb447e73418c656761eba5acc9449c9531f8de86
         return email == null ? null : email.trim().toLowerCase();
     }
 
@@ -58,6 +62,11 @@ public class UserStore {
         if (password == null) {
             return null;
         }
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 9c3c207d0856dc0a452a5f7256f575f923bdd52b
+>>>>>>> eb447e73418c656761eba5acc9449c9531f8de86
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] hashed = digest.digest(password.getBytes(StandardCharsets.UTF_8));

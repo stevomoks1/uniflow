@@ -25,9 +25,12 @@
     </style>
 </head>
 <body>
+<<<<<<< HEAD
 <div class="app-layout">
 <%@ include file="../sidebar.jsp" %>
 <div class="app-main">
+=======
+>>>>>>> eb447e73418c656761eba5acc9449c9531f8de86
     <div class="page">
         <div class="topbar">
             <div>
@@ -82,7 +85,10 @@
             </table>
         </div>
     </div>
+<<<<<<< HEAD
 </div>
 </div>
+=======
+>>>>>>> eb447e73418c656761eba5acc9449c9531f8de86
 </body>
 </html>
