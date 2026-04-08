@@ -40,6 +40,7 @@
             <input id="password" name="password" type="password" required />
             <button type="submit">Sign in</button>
         </form>
+<<<<<<< HEAD
         <p class="hint">New to UniFlow? <a href="register">Create an account</a> | <a href="index.html">Home</a></p>
     </main>
     <% if (logout != null) { %>
@@ -51,5 +52,9 @@
         })();
     </script>
     <% } %>
+=======
+        <p class="hint">New to UniFlow? <a href="register.jsp">Create an account</a> | <a href="index.html">Home</a></p>
+    </main>
+>>>>>>> 9c3c207d0856dc0a452a5f7256f575f923bdd52b
 </body>
 </html>

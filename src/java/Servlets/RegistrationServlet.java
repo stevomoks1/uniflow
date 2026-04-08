@@ -7,13 +7,17 @@ package Servlets;
 import Models.MySQLUserDAO;
 import Models.User;
 import java.io.IOException;
+<<<<<<< HEAD
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+=======
+>>>>>>> 9c3c207d0856dc0a452a5f7256f575f923bdd52b
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+<<<<<<< HEAD
 import javax.servlet.http.HttpSession;
 
 public class RegistrationServlet extends HttpServlet {
@@ -22,15 +26,22 @@ public class RegistrationServlet extends HttpServlet {
             "COD",
             "Class Representative"
     ));
+=======
+
+public class RegistrationServlet extends HttpServlet {
+>>>>>>> 9c3c207d0856dc0a452a5f7256f575f923bdd52b
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+<<<<<<< HEAD
         HttpSession session = request.getSession(false);
         if (session != null && session.getAttribute("role") != null) {
             response.sendRedirect(request.getContextPath() + "/dashboard");
             return;
         }
+=======
+>>>>>>> 9c3c207d0856dc0a452a5f7256f575f923bdd52b
         request.getRequestDispatcher("/register.jsp").forward(request, response);
     }
 
@@ -43,11 +54,14 @@ public class RegistrationServlet extends HttpServlet {
         String password = request.getParameter("password");
         String role = request.getParameter("role");
 
+<<<<<<< HEAD
         firstName = firstName == null ? null : firstName.trim();
         lastName = lastName == null ? null : lastName.trim();
         email = email == null ? null : email.trim();
         role = role == null ? null : role.trim();
 
+=======
+>>>>>>> 9c3c207d0856dc0a452a5f7256f575f923bdd52b
         if (firstName == null || lastName == null || email == null || password == null || role == null
                 || firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || password.isEmpty() || role.isEmpty()) {
             request.setAttribute("error", "Please complete all fields before submitting.");
@@ -55,12 +69,15 @@ public class RegistrationServlet extends HttpServlet {
             return;
         }
 
+<<<<<<< HEAD
         if (!ALLOWED_ROLES.contains(role)) {
             request.setAttribute("error", "Please select a valid role.");
             request.getRequestDispatcher("/register.jsp").forward(request, response);
             return;
         }
 
+=======
+>>>>>>> 9c3c207d0856dc0a452a5f7256f575f923bdd52b
         if (password.length() < 8) {
             request.setAttribute("error", "Password must be at least 8 characters long.");
             request.getRequestDispatcher("/register.jsp").forward(request, response);
@@ -83,6 +100,7 @@ public class RegistrationServlet extends HttpServlet {
             return;
         }
 
+<<<<<<< HEAD
         HttpSession session = request.getSession();
         session.setAttribute("user", user);
         session.setAttribute("role", user.getRole());
@@ -90,6 +108,9 @@ public class RegistrationServlet extends HttpServlet {
         session.setMaxInactiveInterval(30 * 60);
 
         response.sendRedirect(request.getContextPath() + "/dashboard");
+=======
+        response.sendRedirect(request.getContextPath() + "/login?registered=true");
+>>>>>>> 9c3c207d0856dc0a452a5f7256f575f923bdd52b
     }
 
     @Override

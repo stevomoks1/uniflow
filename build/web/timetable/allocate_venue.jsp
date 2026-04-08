@@ -5,6 +5,7 @@
         response.sendRedirect(request.getContextPath() + "/login");
         return;
     }
+<<<<<<< HEAD
     String cp = request.getContextPath();
     String[] venues = {
         "PST 1", "PST 2", "PST 3", "PST 4", "PST 5",
@@ -14,6 +15,8 @@
         "ED1", "ED2", "ED3", "ED4"
     };
     String status = request.getParameter("status");
+=======
+>>>>>>> 9c3c207d0856dc0a452a5f7256f575f923bdd52b
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,9 +30,12 @@
         input, select, button { width: 100%; border: 1px solid #334155; border-radius: 12px; background: #0f172a; color: #e2e8f0; padding: 12px; margin-top: 12px; }
         a { color: #38bdf8; text-decoration: none; }
         .form-grid { display:grid; gap:16px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+<<<<<<< HEAD
         .flash { margin: 16px 0; padding: 12px 14px; border-radius: 12px; border: 1px solid #334155; }
         .success { background: rgba(22, 101, 52, 0.22); border-color: #166534; }
         .error { background: rgba(127, 29, 29, 0.24); border-color: #7f1d1d; }
+=======
+>>>>>>> 9c3c207d0856dc0a452a5f7256f575f923bdd52b
     </style>
 </head>
 <body>
@@ -37,6 +43,7 @@
         <div>
             <h1>Allocate Venue</h1>
             <p>Select a course requirement and assign a room and timeslot.</p>
+<<<<<<< HEAD
             <p><a href="<%= cp %>/dashboard">Back to dashboard</a></p>
         </div>
         <% if ("success".equals(status)) { %>
@@ -70,6 +77,20 @@
                     <label>Time slot<select name="timeSlot" required><option>08:00 - 10:00</option><option>10:30 - 12:30</option><option>14:00 - 16:00</option></select></label>
                 </div>
                 <button type="submit" style="margin-top:16px;">Save allocation</button>
+=======
+            <p><a href="dashboard.jsp">Back to dashboard</a></p>
+        </div>
+
+        <div class="card">
+            <form>
+                <div class="form-grid">
+                    <label>Course request<select><option>CS101 - Lecture</option><option>MATH201 - Tutorial</option></select></label>
+                    <label>Venue<select><option>Hall A</option><option>Room 204</option><option>Lab 3</option></select></label>
+                    <label>Day<select><option>Monday</option><option>Tuesday</option><option>Wednesday</option></select></label>
+                    <label>Time slot<select><option>08:00 - 10:00</option><option>10:30 - 12:30</option><option>14:00 - 16:00</option></select></label>
+                </div>
+                <button type="button" style="margin-top:16px;">Save allocation</button>
+>>>>>>> 9c3c207d0856dc0a452a5f7256f575f923bdd52b
             </form>
         </div>
 

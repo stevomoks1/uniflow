@@ -14,7 +14,11 @@ import java.util.Base64;
 public class MySQLUserDAO {
     private static final String JDBC_URL = System.getProperty("uniflow.jdbc.url", "jdbc:mysql://localhost:3306/uniflowdb?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC");
     private static final String JDBC_USER = System.getProperty("uniflow.jdbc.user", "root");
+<<<<<<< HEAD
     private static final String JDBC_PASSWORD = System.getProperty("uniflow.jdbc.password", "Winnerbonnie@24");
+=======
+    private static final String JDBC_PASSWORD = System.getProperty("uniflow.jdbc.password", "");
+>>>>>>> 9c3c207d0856dc0a452a5f7256f575f923bdd52b
     private static final String JDBC_DRIVER = System.getProperty("uniflow.jdbc.driver", "com.mysql.cj.jdbc.Driver");
 
     static {
@@ -55,7 +59,11 @@ public class MySQLUserDAO {
             ps.setString(2, user.getPasswordHash());
             ps.setString(3, user.getFirstName());
             ps.setString(4, user.getLastName());
+<<<<<<< HEAD
             ps.setString(5, normalizeRole(user.getRole()));
+=======
+            ps.setString(5, user.getRole());
+>>>>>>> 9c3c207d0856dc0a452a5f7256f575f923bdd52b
             return ps.executeUpdate() == 1;
         } catch (SQLException ex) {
             String sqlState = ex.getSQLState();
@@ -81,7 +89,11 @@ public class MySQLUserDAO {
                             rs.getString("password_hash"),
                             rs.getString("first_name"),
                             rs.getString("last_name"),
+<<<<<<< HEAD
                             normalizeRole(rs.getString("role"))
+=======
+                            rs.getString("role")
+>>>>>>> 9c3c207d0856dc0a452a5f7256f575f923bdd52b
                     );
                 }
             }
@@ -116,6 +128,7 @@ public class MySQLUserDAO {
     private static String normalizeEmail(String email) {
         return email == null ? null : email.trim().toLowerCase();
     }
+<<<<<<< HEAD
 
     private static String normalizeRole(String role) {
         if (role == null) {
@@ -133,4 +146,6 @@ public class MySQLUserDAO {
         }
         return normalized;
     }
+=======
+>>>>>>> 9c3c207d0856dc0a452a5f7256f575f923bdd52b
 }

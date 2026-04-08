@@ -5,6 +5,7 @@
         response.sendRedirect(request.getContextPath() + "/login");
         return;
     }
+<<<<<<< HEAD
     String cp = request.getContextPath();
     String[] venues = {
         "PST 1", "PST 2", "PST 3", "PST 4", "PST 5",
@@ -13,6 +14,8 @@
         "CB1", "CB2", "CB3", "CB4", "CB5",
         "ED1", "ED2", "ED3", "ED4"
     };
+=======
+>>>>>>> 9c3c207d0856dc0a452a5f7256f575f923bdd52b
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,12 +37,17 @@
         <div>
             <h1>Manage Schedule</h1>
             <p>Inspect and update the current timetable grid for all venues.</p>
+<<<<<<< HEAD
             <p><a href="<%= cp %>/dashboard">Back to dashboard</a></p>
+=======
+            <p><a href="dashboard.jsp">Back to dashboard</a></p>
+>>>>>>> 9c3c207d0856dc0a452a5f7256f575f923bdd52b
         </div>
 
         <div class="card">
             <table class="timetable">
                 <thead>
+<<<<<<< HEAD
                     <tr><th>Venue</th><th>Current Allocation</th><th>Status</th></tr>
                 </thead>
                 <tbody>
@@ -50,6 +58,14 @@
                         <td>Awaiting live schedule data</td>
                     </tr>
                     <% } %>
+=======
+                    <tr><th>Time</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>08:00-10:00</td><td>CS101 - Hall A</td><td>MATH201 - Room 204</td><td>ENG301 - Lab 3</td><td>FREE</td><td>PHYS110 - Hall B</td></tr>
+                    <tr><td>10:30-12:30</td><td>HIST220 - Room 101</td><td>FREE</td><td>CHEM150 - Lab 4</td><td>CS101 - Hall A</td><td>FREE</td></tr>
+                    <tr><td>14:00-16:00</td><td>FREE</td><td>CS301 - Hall A</td><td>FREE</td><td>ECON110 - Room 203</td><td>SOC120 - Room 205</td></tr>
+>>>>>>> 9c3c207d0856dc0a452a5f7256f575f923bdd52b
                 </tbody>
             </table>
         </div>

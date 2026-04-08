@@ -41,10 +41,16 @@
                 <option value="COD">COD</option>
                 <option value="Class Representative">Class Representative</option>
             </select>
+<<<<<<< HEAD
             <p class="hint" style="margin-top:10px;">System Admin accounts are created internally by the platform administrator.</p>
             <button type="submit">Create account</button>
         </form>
         <p class="hint">Already registered? <a href="login">Sign in</a> | <a href="index.html">Home</a></p>
+=======
+            <button type="submit">Create account</button>
+        </form>
+        <p class="hint">Already registered? <a href="login.jsp">Sign in</a> | <a href="index.html">Home</a></p>
+>>>>>>> 9c3c207d0856dc0a452a5f7256f575f923bdd52b
     </main>
 </body>
 </html>

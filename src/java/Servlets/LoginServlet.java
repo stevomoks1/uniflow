@@ -15,11 +15,14 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+<<<<<<< HEAD
         HttpSession session = request.getSession(false);
         if (session != null && session.getAttribute("role") != null) {
             response.sendRedirect(request.getContextPath() + "/dashboard");
             return;
         }
+=======
+>>>>>>> 9c3c207d0856dc0a452a5f7256f575f923bdd52b
         request.getRequestDispatcher("/login.jsp").forward(request, response);
     }
 
