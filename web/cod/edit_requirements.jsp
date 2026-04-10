@@ -1,4 +1,4 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+﻿<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     Models.User user = (Models.User) session.getAttribute("user");
     if (user == null || !"COD".equals(user.getRole())) {
@@ -23,26 +23,13 @@
     </style>
 </head>
 <body>
-<<<<<<< HEAD
     <%@ include file="/includes/header.jsp" %>
     <%@ include file="/includes/navbar.jsp" %>
-=======
-<<<<<<< HEAD
-<div class="app-layout">
-<%@ include file="../sidebar.jsp" %>
-<div class="app-main">
-=======
->>>>>>> eb447e73418c656761eba5acc9449c9531f8de86
->>>>>>> 18b08055af7c0f466d3c5b5aca7aea5ac98397d5
     <div class="page">
         <div>
             <h1>Edit Previous Requirements</h1>
             <p>Choose a previously submitted requirement and update details.</p>
-<<<<<<< HEAD
             <p><a href="<%= request.getContextPath() %>/cod/dashboard.jsp">Back to dashboard</a></p>
-=======
-            <p><a href="dashboard.jsp">Back to dashboard</a></p>
->>>>>>> 18b08055af7c0f466d3c5b5aca7aea5ac98397d5
         </div>
         <div class="card">
             <table>
@@ -57,14 +44,8 @@
             </table>
         </div>
     </div>
-<<<<<<< HEAD
     <%@ include file="/includes/footer.jsp" %>
-=======
-<<<<<<< HEAD
-</div>
-</div>
-=======
->>>>>>> eb447e73418c656761eba5acc9449c9531f8de86
->>>>>>> 18b08055af7c0f466d3c5b5aca7aea5ac98397d5
 </body>
 </html>
+
+

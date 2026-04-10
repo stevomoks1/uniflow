@@ -1,4 +1,4 @@
-package Models;
+﻿package Models;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -18,7 +18,6 @@ public class WorkflowDAO {
     private static final String JDBC_PASSWORD = readSetting("uniflow.jdbc.password", "UNIFLOW_JDBC_PASSWORD", "");
     private static final String JDBC_DRIVER = readSetting("uniflow.jdbc.driver", "UNIFLOW_JDBC_DRIVER", "com.mysql.cj.jdbc.Driver");
 
-<<<<<<< HEAD
     static {
         try {
             Class.forName(JDBC_DRIVER);
@@ -27,52 +26,10 @@ public class WorkflowDAO {
             throw new IllegalStateException("MySQL JDBC driver not found: " + JDBC_DRIVER, ex);
         } catch (SQLException ex) {
             throw new IllegalStateException("Unable to initialize UniFlow workflow schema", ex);
-=======
-    private static final Object INIT_LOCK = new Object();
-    private static volatile boolean driverLoaded;
-    private static volatile boolean schemaReady;
-
-    /**
-     * Lazy init so JSP pages load even if MySQL is down or the JDBC driver is missing.
-     */
-    private static void ensureSchema() {
-        if (schemaReady) {
-            return;
-        }
-        synchronized (INIT_LOCK) {
-            if (schemaReady) {
-                return;
-            }
-            if (!driverLoaded) {
-                try {
-                    Class.forName(JDBC_DRIVER);
-                    driverLoaded = true;
-                } catch (ClassNotFoundException ex) {
-                    return;
-                }
-            }
-            try {
-                createSchema();
-                schemaReady = true;
-            } catch (SQLException ex) {
-                // Retry on next call; list methods return empty until DB works
-            }
->>>>>>> 18b08055af7c0f466d3c5b5aca7aea5ac98397d5
         }
     }
 
     private static Connection getConnection() throws SQLException {
-<<<<<<< HEAD
-=======
-        if (!driverLoaded) {
-            try {
-                Class.forName(JDBC_DRIVER);
-                driverLoaded = true;
-            } catch (ClassNotFoundException ex) {
-                throw new SQLException("MySQL JDBC driver not found: " + JDBC_DRIVER, ex);
-            }
-        }
->>>>>>> 18b08055af7c0f466d3c5b5aca7aea5ac98397d5
         return DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
     }
 
@@ -117,10 +74,6 @@ public class WorkflowDAO {
     }
 
     public static boolean submitRequirement(String courseCode, String lecturerName, int studentCount, String specialNeeds, String submittedByEmail) {
-<<<<<<< HEAD
-=======
-        ensureSchema();
->>>>>>> 18b08055af7c0f466d3c5b5aca7aea5ac98397d5
         String sql = "INSERT INTO requirements(course_code, lecturer_name, student_count, special_needs, submitted_by_email, status) "
                 + "VALUES (?, ?, ?, ?, ?, 'SUBMITTED')";
         try (Connection conn = getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -136,10 +89,6 @@ public class WorkflowDAO {
     }
 
     public static boolean releaseDraft(long requirementId, String venue, String dayOfWeek, String timeSlot) {
-<<<<<<< HEAD
-=======
-        ensureSchema();
->>>>>>> 18b08055af7c0f466d3c5b5aca7aea5ac98397d5
         String sql = "UPDATE requirements SET venue = ?, day_of_week = ?, time_slot = ?, status = 'DRAFT_RELEASED' WHERE id = ?";
         try (Connection conn = getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, safeTrim(venue));
@@ -153,10 +102,6 @@ public class WorkflowDAO {
     }
 
     public static boolean markAdjusted(long requirementId, String adjustmentNote) {
-<<<<<<< HEAD
-=======
-        ensureSchema();
->>>>>>> 18b08055af7c0f466d3c5b5aca7aea5ac98397d5
         String sql = "UPDATE requirements SET status = 'ADJUSTED', adjustment_note = ? WHERE id = ?";
         try (Connection conn = getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, safeTrim(adjustmentNote));
@@ -168,10 +113,6 @@ public class WorkflowDAO {
     }
 
     public static boolean finalizeRequirement(long requirementId, String finalNote) {
-<<<<<<< HEAD
-=======
-        ensureSchema();
->>>>>>> 18b08055af7c0f466d3c5b5aca7aea5ac98397d5
         String sql = "UPDATE requirements SET status = 'FINALIZED', final_note = ? WHERE id = ?";
         try (Connection conn = getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, safeTrim(finalNote));
@@ -183,10 +124,6 @@ public class WorkflowDAO {
     }
 
     public static boolean reportIssue(Long requirementId, String issueTitle, String category, String priority, String description, String reportedByEmail) {
-<<<<<<< HEAD
-=======
-        ensureSchema();
->>>>>>> 18b08055af7c0f466d3c5b5aca7aea5ac98397d5
         String sql = "INSERT INTO feedback_issues(requirement_id, issue_title, category, priority, description, reported_by_email, status) "
                 + "VALUES (?, ?, ?, ?, ?, ?, 'OPEN')";
         try (Connection conn = getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -207,10 +144,6 @@ public class WorkflowDAO {
     }
 
     public static boolean updateIssueStatus(long issueId, String status, String response) {
-<<<<<<< HEAD
-=======
-        ensureSchema();
->>>>>>> 18b08055af7c0f466d3c5b5aca7aea5ac98397d5
         String sql = "UPDATE feedback_issues SET status = ?, timetable_response = ? WHERE id = ?";
         try (Connection conn = getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, safeTrim(status));
@@ -223,10 +156,6 @@ public class WorkflowDAO {
     }
 
     public static List<RequirementRecord> listRequirements() {
-<<<<<<< HEAD
-=======
-        ensureSchema();
->>>>>>> 18b08055af7c0f466d3c5b5aca7aea5ac98397d5
         String sql = "SELECT id, course_code, lecturer_name, student_count, special_needs, submitted_by_email, status, "
                 + "venue, day_of_week, time_slot, adjustment_note, final_note, created_at, updated_at "
                 + "FROM requirements ORDER BY created_at DESC";
@@ -251,37 +180,21 @@ public class WorkflowDAO {
                 ));
             }
         } catch (SQLException ex) {
-<<<<<<< HEAD
             throw new RuntimeException("Unable to list requirements", ex);
-=======
-            return new ArrayList<>();
->>>>>>> 18b08055af7c0f466d3c5b5aca7aea5ac98397d5
         }
         return records;
     }
 
     public static List<IssueRecord> listIssues() {
-<<<<<<< HEAD
-=======
-        ensureSchema();
->>>>>>> 18b08055af7c0f466d3c5b5aca7aea5ac98397d5
         String sql = "SELECT id, requirement_id, issue_title, category, priority, description, reported_by_email, status, timetable_response, created_at, updated_at "
                 + "FROM feedback_issues ORDER BY created_at DESC";
         List<IssueRecord> records = new ArrayList<>();
         try (Connection conn = getConnection(); PreparedStatement ps = conn.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
-<<<<<<< HEAD
                 long requirementId = rs.getLong("requirement_id");
                 records.add(new IssueRecord(
                         rs.getLong("id"),
                         rs.wasNull() ? null : requirementId,
-=======
-                long requirementIdRaw = rs.getLong("requirement_id");
-                Long requirementId = rs.wasNull() ? null : Long.valueOf(requirementIdRaw);
-                records.add(new IssueRecord(
-                        rs.getLong("id"),
-                        requirementId,
->>>>>>> 18b08055af7c0f466d3c5b5aca7aea5ac98397d5
                         rs.getString("issue_title"),
                         rs.getString("category"),
                         rs.getString("priority"),
@@ -294,20 +207,12 @@ public class WorkflowDAO {
                 ));
             }
         } catch (SQLException ex) {
-<<<<<<< HEAD
             throw new RuntimeException("Unable to list issues", ex);
-=======
-            return new ArrayList<>();
->>>>>>> 18b08055af7c0f466d3c5b5aca7aea5ac98397d5
         }
         return records;
     }
 
     public static List<IssueRecord> listIssuesByReporter(String reporterEmail) {
-<<<<<<< HEAD
-=======
-        ensureSchema();
->>>>>>> 18b08055af7c0f466d3c5b5aca7aea5ac98397d5
         String sql = "SELECT id, requirement_id, issue_title, category, priority, description, reported_by_email, status, timetable_response, created_at, updated_at "
                 + "FROM feedback_issues WHERE reported_by_email = ? ORDER BY created_at DESC";
         List<IssueRecord> records = new ArrayList<>();
@@ -315,18 +220,10 @@ public class WorkflowDAO {
             ps.setString(1, safeTrim(reporterEmail));
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
-<<<<<<< HEAD
                     long requirementId = rs.getLong("requirement_id");
                     records.add(new IssueRecord(
                             rs.getLong("id"),
                             rs.wasNull() ? null : requirementId,
-=======
-                    long requirementIdRaw = rs.getLong("requirement_id");
-                    Long requirementId = rs.wasNull() ? null : Long.valueOf(requirementIdRaw);
-                    records.add(new IssueRecord(
-                            rs.getLong("id"),
-                            requirementId,
->>>>>>> 18b08055af7c0f466d3c5b5aca7aea5ac98397d5
                             rs.getString("issue_title"),
                             rs.getString("category"),
                             rs.getString("priority"),
@@ -340,11 +237,7 @@ public class WorkflowDAO {
                 }
             }
         } catch (SQLException ex) {
-<<<<<<< HEAD
             throw new RuntimeException("Unable to list reporter issues", ex);
-=======
-            return new ArrayList<>();
->>>>>>> 18b08055af7c0f466d3c5b5aca7aea5ac98397d5
         }
         return records;
     }
@@ -431,3 +324,4 @@ public class WorkflowDAO {
         }
     }
 }
+

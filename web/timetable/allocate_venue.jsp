@@ -1,40 +1,13 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<<<<<<< HEAD
+﻿<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@page import="Models.WorkflowDAO"%>
-=======
-<<<<<<< HEAD
-<%@page import="java.util.List"%>
-<%@page import="Models.WorkflowDAO"%>
-=======
->>>>>>> eb447e73418c656761eba5acc9449c9531f8de86
->>>>>>> 18b08055af7c0f466d3c5b5aca7aea5ac98397d5
 <%
     Models.User user = (Models.User) session.getAttribute("user");
     if (user == null || !"Timetabling Admin".equals(user.getRole())) {
         response.sendRedirect(request.getContextPath() + "/login");
         return;
     }
-<<<<<<< HEAD
     List<WorkflowDAO.RequirementRecord> requirements = WorkflowDAO.listRequirements();
-=======
-<<<<<<< HEAD
-    List<WorkflowDAO.RequirementRecord> requirements = WorkflowDAO.listRequirements();
-=======
-<<<<<<< HEAD
-    String cp = request.getContextPath();
-    String[] venues = {
-        "PST 1", "PST 2", "PST 3", "PST 4", "PST 5",
-        "NPL 1", "NPL 2", "NPL 3", "NPL 4", "NPL 5", "NPL 6",
-        "B1", "B2", "B3", "B4", "B5",
-        "CB1", "CB2", "CB3", "CB4", "CB5",
-        "ED1", "ED2", "ED3", "ED4"
-    };
-    String status = request.getParameter("status");
-=======
->>>>>>> 9c3c207d0856dc0a452a5f7256f575f923bdd52b
->>>>>>> eb447e73418c656761eba5acc9449c9531f8de86
->>>>>>> 18b08055af7c0f466d3c5b5aca7aea5ac98397d5
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,21 +21,11 @@
         input, select, button { width: 100%; border: 1px solid #334155; border-radius: 12px; background: #0f172a; color: #e2e8f0; padding: 12px; margin-top: 12px; }
         a { color: #38bdf8; text-decoration: none; }
         .form-grid { display:grid; gap:16px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
-<<<<<<< HEAD
     </style>
 </head>
 <body>
     <%@ include file="/includes/header.jsp" %>
     <%@ include file="/includes/navbar.jsp" %>
-=======
-<<<<<<< HEAD
-    </style>
-</head>
-<body>
-<div class="app-layout">
-<%@ include file="../sidebar.jsp" %>
-<div class="app-main">
->>>>>>> 18b08055af7c0f466d3c5b5aca7aea5ac98397d5
     <div class="page">
         <div>
             <h1>Allocate Venue</h1>
@@ -84,7 +47,6 @@
                             <% } %>
                         </select>
                     </label>
-<<<<<<< HEAD
                     <label>Venue
                         <input name="venue" type="text" list="venueList" placeholder="Select or type venue" required />
                         <datalist id="venueList">
@@ -116,23 +78,11 @@
                             <option value="CB5"></option>
                         </datalist>
                     </label>
-=======
-                    <label>Venue<input name="venue" type="text" placeholder="Hall A" required /></label>
->>>>>>> 18b08055af7c0f466d3c5b5aca7aea5ac98397d5
                     <label>Day<select name="dayOfWeek" required><option>Monday</option><option>Tuesday</option><option>Wednesday</option><option>Thursday</option><option>Friday</option></select></label>
                     <label>Time slot<input name="timeSlot" type="text" placeholder="08:00 - 10:00" required /></label>
                     <label>Week 2 adjustment note (optional)<textarea name="adjustmentNote" rows="3" placeholder="If this is adjusted after feedback, describe update."></textarea></label>
                 </div>
                 <button type="submit" style="margin-top:16px;">Release draft timetable</button>
-<<<<<<< HEAD
-=======
-=======
-<<<<<<< HEAD
-        .flash { margin: 16px 0; padding: 12px 14px; border-radius: 12px; border: 1px solid #334155; }
-        .success { background: rgba(22, 101, 52, 0.22); border-color: #166534; }
-        .error { background: rgba(127, 29, 29, 0.24); border-color: #7f1d1d; }
-=======
->>>>>>> 9c3c207d0856dc0a452a5f7256f575f923bdd52b
     </style>
 </head>
 <body>
@@ -140,7 +90,6 @@
         <div>
             <h1>Allocate Venue</h1>
             <p>Select a course requirement and assign a room and timeslot.</p>
-<<<<<<< HEAD
             <p><a href="<%= cp %>/dashboard">Back to dashboard</a></p>
         </div>
         <% if ("success".equals(status)) { %>
@@ -174,30 +123,10 @@
                     <label>Time slot<select name="timeSlot" required><option>08:00 - 10:00</option><option>10:30 - 12:30</option><option>14:00 - 16:00</option></select></label>
                 </div>
                 <button type="submit" style="margin-top:16px;">Save allocation</button>
-=======
-            <p><a href="dashboard.jsp">Back to dashboard</a></p>
-        </div>
-
-        <div class="card">
-            <form>
-                <div class="form-grid">
-                    <label>Course request<select><option>CS101 - Lecture</option><option>MATH201 - Tutorial</option></select></label>
-                    <label>Venue<select><option>Hall A</option><option>Room 204</option><option>Lab 3</option></select></label>
-                    <label>Day<select><option>Monday</option><option>Tuesday</option><option>Wednesday</option></select></label>
-                    <label>Time slot<select><option>08:00 - 10:00</option><option>10:30 - 12:30</option><option>14:00 - 16:00</option></select></label>
-                </div>
-                <button type="button" style="margin-top:16px;">Save allocation</button>
->>>>>>> 9c3c207d0856dc0a452a5f7256f575f923bdd52b
->>>>>>> eb447e73418c656761eba5acc9449c9531f8de86
->>>>>>> 18b08055af7c0f466d3c5b5aca7aea5ac98397d5
             </form>
         </div>
 
         <div class="card">
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 18b08055af7c0f466d3c5b5aca7aea5ac98397d5
             <h2>Consolidated Requirements</h2>
             <table style="width:100%; border-collapse: collapse; margin-top: 12px;">
                 <thead>
@@ -218,17 +147,8 @@
             </table>
         </div>
     </div>
-<<<<<<< HEAD
     <%@ include file="/includes/footer.jsp" %>
-=======
-</div>
-</div>
-=======
-            <h2>Allocation Status</h2>
-            <p>Venue assignments will display here once approved.</p>
-        </div>
-    </div>
->>>>>>> eb447e73418c656761eba5acc9449c9531f8de86
->>>>>>> 18b08055af7c0f466d3c5b5aca7aea5ac98397d5
 </body>
 </html>
+
+

@@ -1,11 +1,5 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<<<<<<< HEAD
+﻿<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-=======
-<%
-    String error = (String) request.getAttribute("error");
-%>
->>>>>>> 18b08055af7c0f466d3c5b5aca7aea5ac98397d5
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,17 +20,10 @@
 <body>
     <main class="card">
         <h1>Create a UniFlow Account</h1>
-<<<<<<< HEAD
         <c:if test="${not empty requestScope.error}">
         <div class="error">${requestScope.error}</div>
         </c:if>
         <form action="<%= request.getContextPath() %>/register" method="post">
-=======
-        <% if (error != null) { %>
-        <div class="error"><%= error %></div>
-        <% } %>
-        <form action="register" method="post">
->>>>>>> 18b08055af7c0f466d3c5b5aca7aea5ac98397d5
             <label for="firstName">First name</label>
             <input id="firstName" name="firstName" type="text" required />
             <label for="lastName">Last name</label>
@@ -52,29 +39,12 @@
                 <option value="COD">COD</option>
                 <option value="Class Representative">Class Representative</option>
             </select>
-<<<<<<< HEAD
             <button type="submit">Create account</button>
         </form>
         <p class="hint">System Admin accounts are created manually by database admin only.</p>
         <p class="hint">Already registered? <a href="<%= request.getContextPath() %>/login.jsp">Sign in</a> | <a href="<%= request.getContextPath() %>/index.html">Home</a></p>
-=======
-<<<<<<< HEAD
-            <button type="submit">Create account</button>
-        </form>
-        <p class="hint">Already registered? <a href="login.jsp">Sign in</a> | <a href="index.html">Home</a></p>
-=======
-<<<<<<< HEAD
-            <p class="hint" style="margin-top:10px;">System Admin accounts are created internally by the platform administrator.</p>
-            <button type="submit">Create account</button>
-        </form>
-        <p class="hint">Already registered? <a href="login">Sign in</a> | <a href="index.html">Home</a></p>
-=======
-            <button type="submit">Create account</button>
-        </form>
-        <p class="hint">Already registered? <a href="login.jsp">Sign in</a> | <a href="index.html">Home</a></p>
->>>>>>> 9c3c207d0856dc0a452a5f7256f575f923bdd52b
->>>>>>> eb447e73418c656761eba5acc9449c9531f8de86
->>>>>>> 18b08055af7c0f466d3c5b5aca7aea5ac98397d5
     </main>
 </body>
 </html>
+
+

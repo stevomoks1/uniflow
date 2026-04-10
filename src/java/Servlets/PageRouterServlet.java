@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
@@ -22,11 +22,7 @@ public class PageRouterServlet extends HttpServlet {
             return;
         }
 
-<<<<<<< HEAD
         String role = normalizeRole((String) session.getAttribute("role"));
-=======
-        String role = (String) session.getAttribute("role");
->>>>>>> 18b08055af7c0f466d3c5b5aca7aea5ac98397d5
         String target;
         switch (role) {
             case "System Admin":
@@ -59,7 +55,6 @@ public class PageRouterServlet extends HttpServlet {
     public String getServletInfo() {
         return "Routes authenticated users to their role-specific dashboard.";
     }
-<<<<<<< HEAD
 
     private static String normalizeRole(String role) {
         if (role == null) {
@@ -84,6 +79,5 @@ public class PageRouterServlet extends HttpServlet {
                 return role.trim();
         }
     }
-=======
->>>>>>> 18b08055af7c0f466d3c5b5aca7aea5ac98397d5
 }
+

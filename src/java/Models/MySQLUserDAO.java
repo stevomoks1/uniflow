@@ -1,4 +1,4 @@
-package Models;
+﻿package Models;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,32 +12,13 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 
 public class MySQLUserDAO {
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 18b08055af7c0f466d3c5b5aca7aea5ac98397d5
     private static final String JDBC_URL = readSetting(
             "uniflow.jdbc.url",
             "UNIFLOW_JDBC_URL",
             "jdbc:mysql://localhost:3306/uniflowdb?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC");
     private static final String JDBC_USER = readSetting("uniflow.jdbc.user", "UNIFLOW_JDBC_USER", "root");
-<<<<<<< HEAD
     private static final String JDBC_PASSWORD = readSetting("uniflow.jdbc.password", "UNIFLOW_JDBC_PASSWORD", "Winnerbonnie@24");
     private static final String JDBC_DRIVER = readSetting("uniflow.jdbc.driver", "UNIFLOW_JDBC_DRIVER", "com.mysql.cj.jdbc.Driver");
-=======
-    private static final String JDBC_PASSWORD = readSetting("uniflow.jdbc.password", "UNIFLOW_JDBC_PASSWORD", "");
-    private static final String JDBC_DRIVER = readSetting("uniflow.jdbc.driver", "UNIFLOW_JDBC_DRIVER", "com.mysql.cj.jdbc.Driver");
-=======
-    private static final String JDBC_URL = System.getProperty("uniflow.jdbc.url", "jdbc:mysql://localhost:3306/uniflowdb?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC");
-    private static final String JDBC_USER = System.getProperty("uniflow.jdbc.user", "root");
-<<<<<<< HEAD
-    private static final String JDBC_PASSWORD = System.getProperty("uniflow.jdbc.password", "Winnerbonnie@24");
-=======
-    private static final String JDBC_PASSWORD = System.getProperty("uniflow.jdbc.password", "");
->>>>>>> 9c3c207d0856dc0a452a5f7256f575f923bdd52b
-    private static final String JDBC_DRIVER = System.getProperty("uniflow.jdbc.driver", "com.mysql.cj.jdbc.Driver");
->>>>>>> eb447e73418c656761eba5acc9449c9531f8de86
->>>>>>> 18b08055af7c0f466d3c5b5aca7aea5ac98397d5
 
     static {
         try {
@@ -77,19 +58,7 @@ public class MySQLUserDAO {
             ps.setString(2, user.getPasswordHash());
             ps.setString(3, user.getFirstName());
             ps.setString(4, user.getLastName());
-<<<<<<< HEAD
             ps.setString(5, user.getRole());
-=======
-<<<<<<< HEAD
-            ps.setString(5, user.getRole());
-=======
-<<<<<<< HEAD
-            ps.setString(5, normalizeRole(user.getRole()));
-=======
-            ps.setString(5, user.getRole());
->>>>>>> 9c3c207d0856dc0a452a5f7256f575f923bdd52b
->>>>>>> eb447e73418c656761eba5acc9449c9531f8de86
->>>>>>> 18b08055af7c0f466d3c5b5aca7aea5ac98397d5
             return ps.executeUpdate() == 1;
         } catch (SQLException ex) {
             String sqlState = ex.getSQLState();
@@ -115,19 +84,7 @@ public class MySQLUserDAO {
                             rs.getString("password_hash"),
                             rs.getString("first_name"),
                             rs.getString("last_name"),
-<<<<<<< HEAD
                             rs.getString("role")
-=======
-<<<<<<< HEAD
-                            rs.getString("role")
-=======
-<<<<<<< HEAD
-                            normalizeRole(rs.getString("role"))
-=======
-                            rs.getString("role")
->>>>>>> 9c3c207d0856dc0a452a5f7256f575f923bdd52b
->>>>>>> eb447e73418c656761eba5acc9449c9531f8de86
->>>>>>> 18b08055af7c0f466d3c5b5aca7aea5ac98397d5
                     );
                 }
             }
@@ -146,7 +103,6 @@ public class MySQLUserDAO {
         return hashedPassword.equals(user.getPasswordHash()) ? user : null;
     }
 
-<<<<<<< HEAD
     public static int countUsers() {
         String sql = "SELECT COUNT(*) AS total FROM users";
         try (Connection conn = getConnection(); PreparedStatement ps = conn.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
@@ -159,8 +115,6 @@ public class MySQLUserDAO {
         }
     }
 
-=======
->>>>>>> 18b08055af7c0f466d3c5b5aca7aea5ac98397d5
     public static String hashPassword(String password) {
         if (password == null) {
             return null;
@@ -177,10 +131,6 @@ public class MySQLUserDAO {
     private static String normalizeEmail(String email) {
         return email == null ? null : email.trim().toLowerCase();
     }
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 18b08055af7c0f466d3c5b5aca7aea5ac98397d5
 
     private static String readSetting(String propertyName, String envName, String defaultValue) {
         String fromProperty = System.getProperty(propertyName);
@@ -193,29 +143,6 @@ public class MySQLUserDAO {
         }
         return defaultValue;
     }
-<<<<<<< HEAD
-=======
-=======
-<<<<<<< HEAD
-
-    private static String normalizeRole(String role) {
-        if (role == null) {
-            return null;
-        }
-        String normalized = role.trim();
-        if ("Admin".equalsIgnoreCase(normalized) || "System Admin".equalsIgnoreCase(normalized)) {
-            return "System Admin";
-        }
-        if ("Timetable Admin".equalsIgnoreCase(normalized) || "Timetabling Admin".equalsIgnoreCase(normalized)) {
-            return "Timetabling Admin";
-        }
-        if ("Class Rep".equalsIgnoreCase(normalized) || "Class Representative".equalsIgnoreCase(normalized)) {
-            return "Class Representative";
-        }
-        return normalized;
-    }
-=======
->>>>>>> 9c3c207d0856dc0a452a5f7256f575f923bdd52b
->>>>>>> eb447e73418c656761eba5acc9449c9531f8de86
->>>>>>> 18b08055af7c0f466d3c5b5aca7aea5ac98397d5
 }
+
+
