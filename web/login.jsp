@@ -1,5 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<<<<<<< HEAD
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+=======
+<%
+    String error = (String) request.getAttribute("error");
+    String registered = request.getParameter("registered");
+    String logout = request.getParameter("logout");
+%>
+>>>>>>> 18b08055af7c0f466d3c5b5aca7aea5ac98397d5
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,6 +29,7 @@
 <body>
     <main class="card">
         <h1>UniFlow Login</h1>
+<<<<<<< HEAD
         <c:if test="${not empty param.registered}">
         <div class="flash">Your account was created successfully. Please sign in.</div>
         </c:if>
@@ -34,13 +43,48 @@
         <div class="flash">Last signed in as ${cookie.uniflowLastUser.value}.</div>
         </c:if>
         <form action="<%= request.getContextPath() %>/login" method="post">
+=======
+        <% if (registered != null) { %>
+        <div class="flash">Your account was created successfully. Please sign in.</div>
+        <% } else if (logout != null) { %>
+        <div class="flash">You have been logged out successfully.</div>
+        <% } %>
+        <% if (error != null) { %>
+        <div class="flash error"><%= error %></div>
+        <% } %>
+        <form action="login" method="post">
+>>>>>>> 18b08055af7c0f466d3c5b5aca7aea5ac98397d5
             <label for="email">Email</label>
             <input id="email" name="email" type="email" required />
             <label for="password">Password</label>
             <input id="password" name="password" type="password" required />
             <button type="submit">Sign in</button>
         </form>
+<<<<<<< HEAD
         <p class="hint">New to UniFlow? <a href="<%= request.getContextPath() %>/register.jsp">Create an account</a> | <a href="<%= request.getContextPath() %>/index.html">Home</a></p>
     </main>
+=======
+<<<<<<< HEAD
+        <p class="hint">New to UniFlow? <a href="register.jsp">Create an account</a> | <a href="index.html">Home</a></p>
+    </main>
+=======
+<<<<<<< HEAD
+        <p class="hint">New to UniFlow? <a href="register">Create an account</a> | <a href="index.html">Home</a></p>
+    </main>
+    <% if (logout != null) { %>
+    <script>
+        (function () {
+            var url = new URL(window.location.href);
+            url.searchParams.delete("logout");
+            window.history.replaceState({}, document.title, url.pathname + (url.search ? url.search : ""));
+        })();
+    </script>
+    <% } %>
+=======
+        <p class="hint">New to UniFlow? <a href="register.jsp">Create an account</a> | <a href="index.html">Home</a></p>
+    </main>
+>>>>>>> 9c3c207d0856dc0a452a5f7256f575f923bdd52b
+>>>>>>> eb447e73418c656761eba5acc9449c9531f8de86
+>>>>>>> 18b08055af7c0f466d3c5b5aca7aea5ac98397d5
 </body>
 </html>

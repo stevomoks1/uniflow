@@ -1,13 +1,28 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<<<<<<< HEAD
 <%@page import="java.util.List"%>
 <%@page import="Models.WorkflowDAO"%>
+=======
+<<<<<<< HEAD
+<%@page import="java.util.List"%>
+<%@page import="Models.WorkflowDAO"%>
+=======
+>>>>>>> eb447e73418c656761eba5acc9449c9531f8de86
+>>>>>>> 18b08055af7c0f466d3c5b5aca7aea5ac98397d5
 <%
     Models.User user = (Models.User) session.getAttribute("user");
     if (user == null || !"Class Representative".equals(user.getRole())) {
         response.sendRedirect(request.getContextPath() + "/login");
         return;
     }
+<<<<<<< HEAD
     List<WorkflowDAO.IssueRecord> issues = WorkflowDAO.listIssuesByReporter(user.getEmail());
+=======
+<<<<<<< HEAD
+    List<WorkflowDAO.IssueRecord> issues = WorkflowDAO.listIssuesByReporter(user.getEmail());
+=======
+>>>>>>> eb447e73418c656761eba5acc9449c9531f8de86
+>>>>>>> 18b08055af7c0f466d3c5b5aca7aea5ac98397d5
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,17 +40,38 @@
     </style>
 </head>
 <body>
+<<<<<<< HEAD
     <%@ include file="/includes/header.jsp" %>
     <%@ include file="/includes/navbar.jsp" %>
+=======
+<<<<<<< HEAD
+<div class="app-layout">
+<%@ include file="../sidebar.jsp" %>
+<div class="app-main">
+=======
+>>>>>>> eb447e73418c656761eba5acc9449c9531f8de86
+>>>>>>> 18b08055af7c0f466d3c5b5aca7aea5ac98397d5
     <div class="page">
         <div>
             <h1>Track Reported Issues</h1>
             <p>Monitor the status of previously reported issues and trends.</p>
+<<<<<<< HEAD
             <p><a href="<%= request.getContextPath() %>/classrep/dashboard.jsp">Back to dashboard</a></p>
+=======
+<<<<<<< HEAD
+            <p><a href="<%= request.getContextPath() %>/classrep/dashboard.jsp">Back to dashboard</a></p>
+=======
+            <p><a href="dashboard.jsp">Back to dashboard</a></p>
+>>>>>>> eb447e73418c656761eba5acc9449c9531f8de86
+>>>>>>> 18b08055af7c0f466d3c5b5aca7aea5ac98397d5
         </div>
         <div class="card">
             <table>
                 <thead>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 18b08055af7c0f466d3c5b5aca7aea5ac98397d5
                     <tr><th>Issue</th><th>Priority</th><th>Status</th><th>Timetable response</th></tr>
                 </thead>
                 <tbody>
@@ -49,10 +85,29 @@
                         <td><%= issue.timetableResponse == null ? "-" : issue.timetableResponse %></td>
                     </tr>
                     <% }} %>
+<<<<<<< HEAD
+=======
+=======
+                    <tr><th>Issue</th><th>Priority</th><th>Status</th><th>Updated</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Overcrowding in Lab 3</td><td>Urgent</td><td>Pending</td><td>12 min ago</td></tr>
+                    <tr><td>Projector failure in Hall B</td><td>Normal</td><td>Resolved</td><td>2 hrs ago</td></tr>
+                    <tr><td>Air conditioning issue</td><td>Normal</td><td>Investigating</td><td>1 day ago</td></tr>
+>>>>>>> eb447e73418c656761eba5acc9449c9531f8de86
+>>>>>>> 18b08055af7c0f466d3c5b5aca7aea5ac98397d5
                 </tbody>
             </table>
         </div>
     </div>
+<<<<<<< HEAD
     <%@ include file="/includes/footer.jsp" %>
+=======
+<<<<<<< HEAD
+</div>
+</div>
+=======
+>>>>>>> eb447e73418c656761eba5acc9449c9531f8de86
+>>>>>>> 18b08055af7c0f466d3c5b5aca7aea5ac98397d5
 </body>
 </html>

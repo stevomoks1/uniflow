@@ -25,15 +25,28 @@
     </style>
 </head>
 <body>
+<<<<<<< HEAD
     <%@ include file="/includes/header.jsp" %>
     <%@ include file="/includes/navbar.jsp" %>
+=======
+<<<<<<< HEAD
+<div class="app-layout">
+<%@ include file="../sidebar.jsp" %>
+<div class="app-main">
+=======
+>>>>>>> eb447e73418c656761eba5acc9449c9531f8de86
+>>>>>>> 18b08055af7c0f466d3c5b5aca7aea5ac98397d5
     <div class="page">
         <div class="topbar">
             <div>
                 <h1>Manage Users</h1>
                 <p>Use the table below to create, update, and delete user accounts.</p>
             </div>
+<<<<<<< HEAD
             <div><a href="<%= request.getContextPath() %>/admin/dashboard.jsp">Back to dashboard</a></div>
+=======
+            <div><a href="dashboard.jsp">Back to dashboard</a></div>
+>>>>>>> 18b08055af7c0f466d3c5b5aca7aea5ac98397d5
         </div>
 
         <div class="card">
@@ -81,6 +94,14 @@
             </table>
         </div>
     </div>
+<<<<<<< HEAD
     <%@ include file="/includes/footer.jsp" %>
+=======
+<<<<<<< HEAD
+</div>
+</div>
+=======
+>>>>>>> eb447e73418c656761eba5acc9449c9531f8de86
+>>>>>>> 18b08055af7c0f466d3c5b5aca7aea5ac98397d5
 </body>
 </html>

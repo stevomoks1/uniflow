@@ -6,7 +6,10 @@ package Servlets;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
+<<<<<<< HEAD
 import javax.servlet.http.Cookie;
+=======
+>>>>>>> 18b08055af7c0f466d3c5b5aca7aea5ac98397d5
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,11 +24,14 @@ public class LogoutServlet extends HttpServlet {
         if (session != null) {
             session.invalidate();
         }
+<<<<<<< HEAD
         Cookie roleCookie = new Cookie("uniflowLastRole", "");
         roleCookie.setHttpOnly(true);
         roleCookie.setPath(request.getContextPath().isEmpty() ? "/" : request.getContextPath());
         roleCookie.setMaxAge(0);
         response.addCookie(roleCookie);
+=======
+>>>>>>> 18b08055af7c0f466d3c5b5aca7aea5ac98397d5
         response.sendRedirect(request.getContextPath() + "/login?logout=true");
     }
 
