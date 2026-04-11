@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
@@ -106,6 +106,7 @@
             <a href="register.jsp" class="register">Register</a>
         </div>
     </div>
+    <jsp:include page="/includes/cookieConsent.jsp" />
 </body>
 </html>
 

@@ -1,10 +1,14 @@
-﻿<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@page import="Models.WorkflowDAO"%>
 <%
     Models.User user = (Models.User) session.getAttribute("user");
-    if (user == null || !"Class Representative".equals(user.getRole())) {
+    if (user == null) {
         response.sendRedirect(request.getContextPath() + "/login");
+        return;
+    }
+    if (!"Class Representative".equals(user.getRole())) {
+        response.sendRedirect(request.getContextPath() + "/dashboard");
         return;
     }
     List<WorkflowDAO.IssueRecord> issues = WorkflowDAO.listIssuesByReporter(user.getEmail());
@@ -36,6 +40,13 @@
         .btn { text-decoration: none; color: #f8fafc; border: 1px solid rgba(148,163,184,.35); padding: 10px 14px; border-radius: 12px; background: rgba(15,23,42,.7); }
         .btn.primary { color: #082f49; background: linear-gradient(135deg, #7dd3fc, #38bdf8); border: none; }
         .nav { margin-top: 18px; display: flex; gap: 10px; flex-wrap: wrap; }
+        .layout { display: grid; grid-template-columns: minmax(240px, 280px) minmax(0, 1fr); gap: 24px; align-items: start; }
+        .app-sidebar { padding: 24px; background: rgba(15,23,42,.92); border: 1px solid rgba(148,163,184,.2); border-radius: 18px; position: sticky; top: 20px; max-height: calc(100vh - 56px); overflow: auto; }
+        .app-sidebar h2 { margin-top: 0; color: #cbd5e1; font-size: 1.1rem; }
+        .app-sidebar ul { list-style: none; padding: 0; margin: 0; }
+        .app-sidebar ul li { margin: 0 0 12px; }
+        .app-sidebar ul li a { display: block; color: #e2e8f0; text-decoration: none; padding: 10px 12px; border-radius: 12px; border: 1px solid transparent; background: rgba(15,23,42,.7); }
+        .app-sidebar ul li a:hover { background: rgba(56,189,248,.17); border-color: rgba(56,189,248,.35); }
         .panel { margin-top: 18px; padding: 20px; border-radius: 16px; border: 1px solid rgba(148,163,184,.25); background: rgba(15,23,42,.82); }
         .grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
         .card { padding: 18px; border-radius: 14px; border: 1px solid rgba(148,163,184,.18); background: rgba(15,23,42,.7); }
@@ -47,24 +58,19 @@
     </style>
 </head>
 <body>
-    <div class="page">
-        <div class="top">
-            <div>
-                <h1>Class Representative Dashboard</h1>
-                <p class="welcome">Welcome, <strong><%= user.getFullName() %></strong> | <%= user.getRole() %></p>
+    <div class="layout">
+        <jsp:include page="/includes/sidebar.jsp" />
+        <div class="page">
+            <div class="top-bar">
+                <div class="top">
+                    <h1>Class Representative Dashboard</h1>
+                    <p class="welcome">Welcome, <strong><%= user.getFullName() %></strong> | <%= user.getRole() %></p>
+                </div>
+                <div class="top-actions">
+                    <a class="btn primary" href="<%= request.getContextPath() %>/logout">Logout</a>
+                </div>
             </div>
-            <div>
-                <a class="btn" href="<%= request.getContextPath() %>/dashboard">Refresh route</a>
-                <a class="btn primary" href="<%= request.getContextPath() %>/logout">Logout</a>
-            </div>
-        </div>
-
-        <div class="nav">
-            <a class="btn" href="<%= request.getContextPath() %>/classrep/report_issue.jsp">Report issue</a>
-            <a class="btn" href="<%= request.getContextPath() %>/classrep/track_issue.jsp">Track issue</a>
-            <a class="btn" href="<%= request.getContextPath() %>/">Home</a>
-        </div>
-
+            <div class="content">
         <div class="panel grid">
             <div class="card"><h3>Issue Reporting</h3><p>Submit facility, overcrowding, or equipment issues immediately.</p></div>
             <div class="card"><h3>Status Tracking</h3><p>Track the progress of issues and see how they are being resolved.</p></div>
@@ -82,70 +88,10 @@
                 </tbody>
             </table>
         </div>
-    </div>
-    </style>
-</head>
-<body>
-    <div class="page">
-        <div class="layout">
-            <aside class="sidebar">
-                <h3>Class Rep Tabs</h3>
-                <ul class="tab-list">
-                    <li><a href="<%= cp %>/dashboard">Dashboard Home</a></li>
-                    <li><a href="<%= cp %>/classrep/report_issue.jsp">Report Issue</a></li>
-                    <li><a href="<%= cp %>/classrep/track_issue.jsp">Track Issues</a></li>
-                    <li><a href="<%= cp %>/logout">Logout</a></li>
-                </ul>
-            </aside>
-            <main class="content">
-                <header>
-                    <div>
-                        <h1>Class Representative Dashboard</h1>
-                        <p>Welcome, <strong><%= user.getFullName() %></strong> â€” Role: <%= user.getRole() %></p>
-                    </div>
-                </header>
-
-                <div class="kpi-grid">
-            <div class="kpi"><div>Open Issues</div><div class="value">6</div></div>
-            <div class="kpi"><div>Escalated</div><div class="value">2</div></div>
-            <div class="kpi"><div>Resolved</div><div class="value">11</div></div>
-            <div class="kpi"><div>Feedback Week</div><div class="value">1</div></div>
-                </div>
-
-                <div class="card">
-            <h2>What To Do This Week</h2>
-            <ol class="flow-list">
-                <li>Collect student complaints from the released draft timetable.</li>
-                <li>Report each clash with clear room/course evidence.</li>
-                <li>Track response status and update affected classes.</li>
-            </ol>
-                </div>
-
-                <div class="card">
-            <h2>Latest Reported Issues</h2>
-            <table>
-                <thead><tr><th>Issue</th><th>Course</th><th>Priority</th><th>Status</th></tr></thead>
-                <tbody>
-                    <tr><td>Lab power outage</td><td>IT203</td><td>High</td><td><span class="badge open">Open</span></td></tr>
-                    <tr><td>Room too small</td><td>CS101</td><td>Medium</td><td><span class="badge progress">In Review</span></td></tr>
-                    <tr><td>Projector missing cable</td><td>SE301</td><td>Low</td><td><span class="badge done">Resolved</span></td></tr>
-                </tbody>
-            </table>
-                </div>
-            </main>
-                <thead><tr><th>Type</th><th>Count</th></tr></thead>
-                <tbody>
-                    <tr><td>Pending</td><td>4</td></tr>
-                    <tr><td>Resolved</td><td>9</td></tr>
-                    <tr><td>Urgent</td><td>2</td></tr>
-                </tbody>
-            </table>
+        </div>
         </div>
     </div>
-</div>
-</div>
-        </div>
-    </div>
+    <jsp:include page="/includes/cookieConsent.jsp" />
 </body>
 </html>
 

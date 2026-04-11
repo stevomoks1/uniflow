@@ -1,4 +1,4 @@
-﻿<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,17 +22,35 @@
     <main class="card">
         <h1>UniFlow Login</h1>
         <c:if test="${not empty param.registered}">
-        <div class="flash">Your account was created successfully. Please sign in.</div>
+        <div class="flash" id="successMsg">Your account was created successfully. Please sign in.</div>
         </c:if>
         <c:if test="${empty param.registered and not empty param.logout}">
-        <div class="flash">You have been logged out successfully.</div>
+        <div class="flash" id="logoutMsg">You have been logged out successfully.</div>
         </c:if>
         <c:if test="${not empty requestScope.error}">
         <div class="flash error">${requestScope.error}</div>
         </c:if>
-        <c:if test="${not empty cookie.uniflowLastUser.value}">
-        <div class="flash">Last signed in as ${cookie.uniflowLastUser.value}.</div>
+        <c:if test="${not empty decodedLastUser}">
+        <div class="flash">Last signed in as ${decodedLastUser}.</div>
         </c:if>
+        <script>
+        (function() {
+            var successMsg = document.getElementById('successMsg');
+            var logoutMsg = document.getElementById('logoutMsg');
+            if (successMsg || logoutMsg) {
+                if (!sessionStorage.getItem('messageShown')) {
+                    sessionStorage.setItem('messageShown', 'true');
+                } else {
+                    if (successMsg) successMsg.style.display = 'none';
+                    if (logoutMsg) logoutMsg.style.display = 'none';
+                }
+                var url = window.location.href.replace(/[?&](registered|logout)=true/g, '');
+                if (url !== window.location.href) {
+                    window.history.replaceState({}, document.title, url);
+                }
+            }
+        })();
+        </script>
         <form action="<%= request.getContextPath() %>/login" method="post">
             <label for="email">Email</label>
             <input id="email" name="email" type="email" required />
@@ -40,8 +58,9 @@
             <input id="password" name="password" type="password" required />
             <button type="submit">Sign in</button>
         </form>
-        <p class="hint">New to UniFlow? <a href="<%= request.getContextPath() %>/register.jsp">Create an account</a> | <a href="<%= request.getContextPath() %>/index.html">Home</a></p>
+        <p class="hint">New to UniFlow? <a href="<%= request.getContextPath() %>/register.jsp">Create an account</a> | <a href="<%= request.getContextPath() %>/index.jsp">Home</a></p>
     </main>
+    <jsp:include page="/includes/cookieConsent.jsp" />
 </body>
 </html>
 

@@ -1,4 +1,4 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+﻿<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     Models.User user = (Models.User) session.getAttribute("user");
     if (user == null || !"System Admin".equals(user.getRole())) {
@@ -25,13 +25,15 @@
     </style>
 </head>
 <body>
+    <%@ include file="/includes/header.jsp" %>
+    <%@ include file="/includes/navbar.jsp" %>
     <div class="page">
         <div class="topbar">
             <div>
                 <h1>Manage Users</h1>
                 <p>Use the table below to create, update, and delete user accounts.</p>
             </div>
-            <div><a href="dashboard.jsp">Back to dashboard</a></div>
+            <div><a href="<%= request.getContextPath() %>/admin/dashboard.jsp">Back to dashboard</a></div>
         </div>
 
         <div class="card">
@@ -79,5 +81,8 @@
             </table>
         </div>
     </div>
+    <%@ include file="/includes/footer.jsp" %>
 </body>
 </html>
+
+

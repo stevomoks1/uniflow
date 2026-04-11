@@ -1,4 +1,4 @@
-﻿package Models;
+package Models;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -23,19 +23,18 @@ public class MySQLUserDAO {
     static {
         try {
             Class.forName(JDBC_DRIVER);
-            createSchema();
         } catch (ClassNotFoundException ex) {
             throw new IllegalStateException("MySQL JDBC driver not found: " + JDBC_DRIVER, ex);
-        } catch (SQLException ex) {
-            throw new IllegalStateException("Unable to initialize MySQL schema", ex);
         }
     }
 
     private static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
+        Connection conn = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
+        createSchema(conn);
+        return conn;
     }
 
-    private static void createSchema() throws SQLException {
+    private static void createSchema(Connection connection) {
         String createUsers = "CREATE TABLE IF NOT EXISTS users ("
                 + "email VARCHAR(255) PRIMARY KEY, "
                 + "password_hash VARCHAR(255), "
@@ -43,8 +42,11 @@ public class MySQLUserDAO {
                 + "last_name VARCHAR(100), "
                 + "role VARCHAR(100)"
                 + ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4";
-        try (Connection connection = getConnection(); Statement statement = connection.createStatement()) {
+        try (Statement statement = connection.createStatement()) {
             statement.executeUpdate(createUsers);
+        } catch (SQLException e) {
+            // Log but don't fail, assume table might exist or will fail on actual write/read
+            System.err.println("Could not create schema: " + e.getMessage());
         }
     }
 

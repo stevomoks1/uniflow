@@ -1,4 +1,4 @@
-﻿package Servlets;
+package Servlets;
 
 import Models.User;
 import Models.WorkflowDAO;

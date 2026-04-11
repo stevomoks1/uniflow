@@ -1,4 +1,4 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+﻿<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     Models.User user = (Models.User) session.getAttribute("user");
     if (user == null || !"System Admin".equals(user.getRole())) {
@@ -24,13 +24,15 @@
     </style>
 </head>
 <body>
+    <%@ include file="/includes/header.jsp" %>
+    <%@ include file="/includes/navbar.jsp" %>
     <div class="page">
         <div class="topbar">
             <div>
                 <h1>System Logs</h1>
                 <p>Review recent platform activity and key audit events.</p>
             </div>
-            <div><a href="dashboard.jsp">Back to dashboard</a></div>
+            <div><a href="<%= request.getContextPath() %>/admin/dashboard.jsp">Back to dashboard</a></div>
         </div>
 
         <div class="card">
@@ -47,5 +49,8 @@
             </table>
         </div>
     </div>
+    <%@ include file="/includes/footer.jsp" %>
 </body>
 </html>
+
+

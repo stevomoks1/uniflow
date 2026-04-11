@@ -1,9 +1,11 @@
-﻿
+
 package Servlets;
 
 import Models.MySQLUserDAO;
 import Models.User;
 import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -49,13 +51,13 @@ public class LoginServlet extends HttpServlet {
         session.setAttribute("name", user.getFullName());
         session.setMaxInactiveInterval(30 * 60);
 
-        Cookie lastUserCookie = new Cookie("uniflowLastUser", user.getFullName());
+        Cookie lastUserCookie = new Cookie("uniflowLastUser", URLEncoder.encode(user.getFullName(), StandardCharsets.UTF_8.name()));
         lastUserCookie.setHttpOnly(true);
         lastUserCookie.setPath(request.getContextPath().isEmpty() ? "/" : request.getContextPath());
         lastUserCookie.setMaxAge(60 * 60 * 24 * 30);
         response.addCookie(lastUserCookie);
 
-        Cookie lastRoleCookie = new Cookie("uniflowLastRole", canonicalRole);
+        Cookie lastRoleCookie = new Cookie("uniflowLastRole", URLEncoder.encode(canonicalRole, StandardCharsets.UTF_8.name()));
         lastRoleCookie.setHttpOnly(true);
         lastRoleCookie.setPath(request.getContextPath().isEmpty() ? "/" : request.getContextPath());
         lastRoleCookie.setMaxAge(60 * 60 * 24 * 30);

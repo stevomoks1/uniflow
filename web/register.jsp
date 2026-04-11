@@ -1,4 +1,4 @@
-﻿<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,8 +42,9 @@
             <button type="submit">Create account</button>
         </form>
         <p class="hint">System Admin accounts are created manually by database admin only.</p>
-        <p class="hint">Already registered? <a href="<%= request.getContextPath() %>/login.jsp">Sign in</a> | <a href="<%= request.getContextPath() %>/index.html">Home</a></p>
+        <p class="hint">Already registered? <a href="<%= request.getContextPath() %>/login.jsp">Sign in</a> | <a href="<%= request.getContextPath() %>/index.jsp">Home</a></p>
     </main>
+    <jsp:include page="/includes/cookieConsent.jsp" />
 </body>
 </html>
 
