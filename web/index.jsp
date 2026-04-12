@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UniFlow</title>
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 55%, #334155 100%);
+            color: #f8fafc;
+        }
+
+        .container {
+            width: min(520px, 90vw);
+            padding: 40px 32px;
+            border-radius: 28px;
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid rgba(148, 163, 184, 0.22);
+            box-shadow: 0 28px 80px rgba(0, 0, 0, 0.25);
+            text-align: center;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 22px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        .brand-mark {
+            width: 46px;
+            height: 46px;
+            display: grid;
+            place-items: center;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #60a5fa, #38bdf8);
+            color: #0f172a;
+            font-weight: 800;
+            font-size: 1.1rem;
+        }
+
+        .message {
+            margin: 0 auto 28px;
+            max-width: 420px;
+            color: #cbd5e1;
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 14px;
+        }
+
+        .actions a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 140px;
+            padding: 14px 20px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: transform 0.18s ease, background 0.18s ease;
+        }
+
+        .actions a.login {
+            color: #f8fafc;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+        }
+
+        .actions a.register {
+            color: #0f172a;
+            background: linear-gradient(135deg, #60a5fa, #38bdf8);
+        }
+
+        .actions a:hover {
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="brand">
+            <a href="./" style="color: inherit; text-decoration: none; display: inline-flex; align-items: center; gap: 12px;">
+                <span class="brand-mark">U</span>
+                UniFlow
+            </a>
+        </div>
+        <p class="message">Welcome to UniFlow. Login or register to continue </p>
+        <div class="actions">
+            <a href="login.jsp" class="login">Login</a>
+            <a href="register.jsp" class="register">Register</a>
+        </div>
+    </div>
+    <jsp:include page="/includes/cookieConsent.jsp" />
+</body>
+</html>
+
+

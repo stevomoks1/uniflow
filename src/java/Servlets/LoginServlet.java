@@ -1,0 +1,102 @@
+
+package Servlets;
+
+import Models.MySQLUserDAO;
+import Models.User;
+import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+public class LoginServlet extends HttpServlet {
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        request.getRequestDispatcher("/login.jsp").forward(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        if (email != null) {
+            email = email.trim();
+        }
+        if (password != null) {
+            password = password.trim();
+        }
+
+        User user;
+        try {
+            user = MySQLUserDAO.authenticate(email, password);
+        } catch (RuntimeException ex) {
+            request.setAttribute("error", "Unable to connect to MySQL. Please verify database settings and try again.");
+            request.getRequestDispatcher("/login.jsp").forward(request, response);
+            return;
+        }
+        if (user == null) {
+            request.setAttribute("error", "Invalid email or password.");
+            request.getRequestDispatcher("/login.jsp").forward(request, response);
+            return;
+        }
+
+        HttpSession session = request.getSession();
+        session.setAttribute("user", user);
+        String canonicalRole = normalizeRole(user.getRole());
+        session.setAttribute("role", canonicalRole);
+        session.setAttribute("name", user.getFullName());
+        session.setMaxInactiveInterval(30 * 60);
+
+        Cookie lastUserCookie = new Cookie("uniflowLastUser", URLEncoder.encode(user.getFullName(), StandardCharsets.UTF_8.name()));
+        lastUserCookie.setHttpOnly(true);
+        lastUserCookie.setPath(request.getContextPath().isEmpty() ? "/" : request.getContextPath());
+        lastUserCookie.setMaxAge(60 * 60 * 24 * 30);
+        response.addCookie(lastUserCookie);
+
+        Cookie lastRoleCookie = new Cookie("uniflowLastRole", URLEncoder.encode(canonicalRole, StandardCharsets.UTF_8.name()));
+        lastRoleCookie.setHttpOnly(true);
+        lastRoleCookie.setPath(request.getContextPath().isEmpty() ? "/" : request.getContextPath());
+        lastRoleCookie.setMaxAge(60 * 60 * 24 * 30);
+        response.addCookie(lastRoleCookie);
+
+        response.sendRedirect(request.getContextPath() + "/dashboard");
+    }
+
+    @Override
+    public String getServletInfo() {
+        return "Handles user login and session creation.";
+    }
+
+    private static String normalizeRole(String role) {
+        if (role == null) {
+            return "";
+        }
+        String normalized = role.trim().toLowerCase().replace("-", " ");
+        switch (normalized) {
+            case "system admin":
+            case "admin":
+                return "System Admin";
+            case "timetabling admin":
+            case "timetable admin":
+            case "det":
+                return "Timetabling Admin";
+            case "cod":
+                return "COD";
+            case "class representative":
+            case "class rep":
+            case "classrep":
+                return "Class Representative";
+            default:
+                return role.trim();
+        }
+    }
+}
+
+
